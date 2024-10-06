@@ -1,0 +1,38 @@
+<%= show_errors_for(appointment) %>
+<%= form_for appointment do |f| %>
+  <p>
+    <% if appointment.patient_id %>
+      <%= f.label :patient_id, "Patient" %>
+      <%= f.hidden_field :patient_id %>
+      <%= appointment.patient.name %>
+    <% else %>
+    
+      <%= f.label :patient_id, "patient" %>
+      <%= f.collection_select :patient_id, current_user.patients, :id, :name %>
+    <% end %>
+  </p>
+  <p>
+  <% if appointment.doctor_id %>
+    <%= f.label :doctor_id, "Doctor" %>
+    <%= f.hidden_field :doctor_id %>
+    <%= appointment.doctor.name %>
+  <% else %>
+  
+    <%= f.label :doctor_id, "Doctor" %>
+    <%= f.collection_select :doctor_id, Doctor.all, :id, :name %>
+  <% end %>
+  </p>
+  <p>
+    <%= f.label :location %>
+    <%= f.text_field :location %>
+  </p>
+  <p>
+    <%= f.label :start_time %>
+    <%= f.datetime_field :start_time %>
+  </p>
+  <p>
+    <%= f.label :end_time %>
+    <%= f.datetime_field :end_time %>
+  </p>
+  <%= f.submit %>
+<% end %>

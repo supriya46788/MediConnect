@@ -1,0 +1,22 @@
+<h1>Appointments</h1>
+<button><%= link_to  "Add Appointment", new_appointment_path %></button>
+<%= form_tag(appointments_path, method: 'get') do %>
+  <label for="filter_by_time">Filter By Time</label>
+  <select name="filter_by_time">
+    <option <%= 'selected' if params[:filter_by_time] == '' %> value="">All</option>
+    <option <%= 'selected' if params[:filter_by_time] == 'past' %> value="past">Past</option>
+    <option <%= 'selected' if params[:filter_by_time] == 'upcoming' %> value="upcoming">Upcoming</option>
+  </select>
+  <label for="sort">Sort</label>
+  <select name="sort">
+    <option <%= 'selected' if params[:sort] == '' %> value="">None</option>
+    <option <%= 'selected' if params[:sort] == 'most_recent' %> value="most_recent">Most Recent</option>
+    <option <%= 'selected' if params[:sort] == 'longest_ago' %> value="longest_ago">Longest Ago</option>
+  </select>
+  <%= submit_tag 'Filter Results' %>
+<% end %>
+<% @appointments.each do |appointment| %>
+  <p>
+    <%= link_to appointment.patient_name, patient_path(appointment.patient) %> has an appointment at <%= link_to appointment.start_time.strftime('%b %e, %l:%M %p'), appointment_path(appointment) %> with <%= link_to appointment.doctor_name, doctor_path(appointment.doctor) %>
+  </p>
+<% end %>

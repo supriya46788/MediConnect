@@ -1,0 +1,3 @@
+<h1><%= @doctor.name %></h1>
+<p><%= link_to  "Book with #{@doctor.name}", new_doctor_appointment_path(@doctor) %></p>
+<p><%= link_to  "#{@doctor.name}'s appointments", doctor_appointments_path(@doctor) %></p>

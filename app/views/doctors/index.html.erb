@@ -1,0 +1,5 @@
+<h1>Doctors</h1>
+<button><%= link_to 'Add Doctor', new_doctor_path %></button>
+<% @doctors.each do |doctor| %>
+  <p><%= link_to doctor.name, doctor_path(doctor) %></p>
+<% end %>

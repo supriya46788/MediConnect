@@ -1,0 +1,8 @@
+<h1><%= @patient.name %></h1>
+<p><%= link_to "Book appointment for #{@patient.name} ", new_patient_appointment_path(@patient) %></p>
+<p><%= link_to "#{@patient.name}'s appointments", patient_appointments_path(@patient) %></p>
+<p><%= link_to  "Edit Patient", edit_patient_path(@patient) %>
+<%= form_tag(patient_path(@patient), method: :delete) do%>
+<%= submit_tag "Delete Patient" %>
+<% end %>
+</p>

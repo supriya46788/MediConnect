@@ -1,0 +1,8 @@
+<%= show_errors_for(patient) %>
+<%= form_for patient do |f| %>
+  <p>
+    <%= f.label :name, "Add your patient's name" %><br/>
+    <%= f.text_field :name %>
+  </p>
+  <%= f.submit %>
+<% end %>
